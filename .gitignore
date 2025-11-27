@@ -1,6 +1,36 @@
+# IDE and Editor
 .idea
+.vscode
+.DS_Store
 
+# Dependencies
 yarn.lock
 node_modules
+
+# Claude Code
+.claude/
+
+# Go build artifacts
+*.test
+*.out
+*.exe
+
+# Backup files
+*.bak
+*~
+*.swp
+*.swo
+
+# Circuit compilation outputs
+circuitOut/
+kzgsrs/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+Thumbs.db
 .DS_Store
-.vscode
