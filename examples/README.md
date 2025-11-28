@@ -2,9 +2,9 @@
 
 A comprehensive collection of zero-knowledge circuits for blockchain data verification using the [Brevis SDK](https://github.com/brevis-network/brevis-sdk).
 
-**Status:** 17 circuits implemented and tested
-**Coverage:** DeFi protocols, NFTs, token balances, price oracles
-**Chains:** Ethereum, Binance Smart Chain
+**Status:** 20 circuits implemented (17 tested + 3 untested)
+**Coverage:** DeFi protocols, NFTs, token balances, price oracles, cross-chain
+**Chains:** Ethereum, Binance Smart Chain, Polygon (bridge)
 
 ---
 
@@ -137,26 +137,42 @@ Prove supply activity via cToken Mint events
 
 ---
 
+### Stage 3: Cross-Chain Verification (3 circuits) ⚠️ UNTESTED
+
+#### Multi-Chain State (1 circuit)
+
+**18. Multi-Chain Balance Aggregation**
+[cross-chain/multi-chain-balance/circuit.go](cross-chain/multi-chain-balance/circuit.go)
+⚠️ Prove total token balance across Ethereum + BSC
+
+#### Bridge Tracking (1 circuit)
+
+**19. Polygon Bridge Activity**
+[cross-chain/polygon-bridge/circuit.go](cross-chain/polygon-bridge/circuit.go)
+⚠️ Prove Ethereum → Polygon bridge transactions
+
+#### Omnichain Messaging (1 circuit)
+
+**20. LayerZero Message Verification**
+[cross-chain/layerzero-message/circuit.go](cross-chain/layerzero-message/circuit.go)
+⚠️ Prove cross-chain message activity via LayerZero
+
+---
+
 ## Directory Structure
 
 ```
 examples/
 ├── README.md                          # This file
-├── STAGE1_COMPLETE.md                 # Stage 1 final status
-├── STAGE2_COMPLETE.md                 # Stage 2 final status
-├── TESTING_GUIDE.md                   # Testing procedures
-├── PROJECT_CRITIQUE.md                # Project review
 ├── test_rpc.go                        # RPC testing utility
 │
 ├── tokenHolder/                       # ERC20 balance verification
-│   ├── circuit.go
-│   └── README.md
+│   └── circuit.go
 │
 ├── nftOwnership/                      # NFT ownership proof
-│   ├── circuit.go
-│   └── README.md
+│   └── circuit.go
 │
-├── dex-volume/                        # DEX trading & LP circuits
+├── dex-volume/                        # DEX trading & LP circuits (13)
 │   ├── uniswap-v2/
 │   ├── uniswap-v2-bidirectional/
 │   ├── uniswap-v2-lp/
@@ -171,9 +187,14 @@ examples/
 │   ├── curve-stableswap/
 │   └── balancer-weighted/
 │
-└── defi-lending/                      # Lending protocol circuits
-    ├── aave/
-    └── compound/
+├── defi-lending/                      # Lending protocol circuits (2)
+│   ├── aave/
+│   └── compound/
+│
+└── cross-chain/                       # Cross-chain circuits (3) ⚠️ UNTESTED
+    ├── multi-chain-balance/
+    ├── polygon-bridge/
+    └── layerzero-message/
 ```
 
 ---
@@ -192,9 +213,15 @@ examples/
 - ✅ Aave V3 (1 circuit)
 - ✅ Compound V2 (1 circuit)
 
+### Cross-Chain Protocols
+- ⚠️ Polygon PoS Bridge (1 circuit) - UNTESTED
+- ⚠️ LayerZero (1 circuit) - UNTESTED
+- ⚠️ Multi-Chain Aggregation (1 circuit) - UNTESTED
+
 ### Blockchain Networks
 - ✅ Ethereum (Chain ID 1) - 15 circuits
 - ✅ Binance Smart Chain (Chain ID 56) - 2 circuits
+- ⚠️ Polygon (bridge tracking) - 1 circuit - UNTESTED
 
 ---
 
@@ -389,12 +416,12 @@ To add new circuits:
 
 ## Statistics
 
-- **Total Circuits:** 17
-- **Total Lines:** 1,968 lines of circuit code
-- **Average Complexity:** 116 lines per circuit
+- **Total Circuits:** 20 (17 tested + 3 untested)
+- **Total Lines:** ~2,300 lines of circuit code
+- **Average Complexity:** 115 lines per circuit
 - **Compilation Success:** 100%
-- **Protocols Covered:** 8
-- **Chains Supported:** 2
+- **Protocols Covered:** 11 (8 DeFi + 3 Cross-Chain)
+- **Chains Supported:** 3 (Ethereum, BSC, Polygon bridge)
 
 ---
 
@@ -402,11 +429,13 @@ To add new circuits:
 
 - **Stage 1 (Basic):** ✅ Complete (2/2 circuits)
 - **Stage 2 (DeFi):** ✅ Complete (15/15 circuits)
-- **Stage 3 (Cross-chain):** ⏳ Planned
+- **Stage 3 (Cross-chain):** ⚠️ Partial (3/10+ circuits) - UNTESTED
 - **Stage 4 (Advanced):** ⏳ Planned
 - **Stage 5 (Integration):** ⏳ Planned
 
-**Current Milestone:** Gateway testing → Production deployment
+**Current Milestone:** ⏸️ PAUSED - Awaiting gateway testing of all 20 circuits
+
+**⚠️ IMPORTANT:** Stage 3 circuits are untested. Gateway testing required before continuing development.
 
 ---
 
