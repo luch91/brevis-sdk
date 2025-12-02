@@ -7,8 +7,6 @@
 yarn.lock
 node_modules
 
-# Claude Code
-.claude/
 
 # Go build artifacts
 *.test
